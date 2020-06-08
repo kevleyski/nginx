@@ -43,6 +43,8 @@ auto/configure --prefix=/usr/local/etc/nginx \
 	--with-cc-opt="-I/usr/local/include -I/usr/local/opt/openssl/include" \
 	--with-ld-opt="-L/usr/local/lib -L/usr/local/opt/openssl/lib" \
 	--prefix=/usr/local/etc/nginx \
+	--with-http_ssl_module \
+	--with-http_v2_module \
 	--sbin-path=/usr/local/sbin/nginx \
 	--conf-path=/usr/local/etc/nginx/nginx.conf \
 	--error-log-path=/usr/local/var/log/nginx/error.log \
