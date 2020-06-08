@@ -1,11 +1,16 @@
 #!/bin/bash
+if [ ! -d nginx-rtmp-module ]; then
 git clone https://github.com/kevleyski/nginx-rtmp-module nginx-rtmp-module
-git clone https://github.com/kevleyski/ngx_devel_kit ngx_devel_kit 
+fi
 
-if [ ! -d openssl-1.0.2o ]; then
-wget http://www.openssl.org/source/openssl-1.0.2o.tar.gz
-tar -zxf openssl-1.0.2o.tar.gz
-cd openssl-1.0.2o
+if [ ! -d ngx_devel_kit ]; then
+git clone https://github.com/kevleyski/ngx_devel_kit ngx_devel_kit 
+fi
+
+if [ ! -d openssl-1.1.1g ]; then
+wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+tar -zxf openssl-1.1.1g.tar.gz
+cd openssl-1.1.1g
 ./Configure darwin64-x86_64-cc --prefix=/usr
 make
 sudo make install
@@ -34,7 +39,7 @@ fi
 
 mkdir -p /usr/local/nginx
 mkdir -p /usr/local/nginx/nginx
-./configure --prefix=/usr/local/etc/nginx \
+auto/configure --prefix=/usr/local/etc/nginx \
 	--with-cc-opt="-I/usr/local/include -I/usr/local/opt/openssl/include" \
 	--with-ld-opt="-L/usr/local/lib -L/usr/local/opt/openssl/lib" \
 	--prefix=/usr/local/etc/nginx \
@@ -46,7 +51,7 @@ mkdir -p /usr/local/nginx/nginx
 	--lock-path=/usr/local/var/run/nginx.lock \
 	--add-module=./ngx_devel_kit \
  	--add-module=./nginx-rtmp-module \
- 	--add-module=../smootha/nginx-switch-module
+ 	--add-module=./nginx_kevs
 
 make -j9
 sudo make install
