@@ -38,6 +38,7 @@ mkdir -p /usr/nginx/nginx
 	--with-cc-opt="-I/usr/include" \
 	--with-ld-opt="-L/usr/lib" \
         --with-compat \
+ 	--add-module=../nginx_mod_smooth_streaming-1.9.6 \
         --with-openssl=/usr/include/openssl \
         --with-http_stub_status_module
 
